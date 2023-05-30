@@ -17,7 +17,7 @@
     "bullmq": "3.14.1",
     "dotenv": "16.0.3",
     "ioredis": "5.3.2",
-    "mjml": "4.14.0",
+    "mjml": "4.14.1",
     "nodemailer": "6.9.3",
     "p-timeout": "6.1.1",
     "sendmail": "1.6.1",
