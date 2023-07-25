@@ -231,9 +231,7 @@ const deleteTokens: TypedDocumentNodeUpdateResolver<typeof DeleteTokensDocument>
     },
     data => {
       data.tokens.nodes = data.tokens.nodes.filter(
-        // TODO: fix types
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-        node => !deleteTokens.deletedTokens.includes((node as any).id),
+        node => !deleteTokens.deletedTokens.includes(node.id),
       );
       data.tokens.total = data.tokens.nodes.length;
     },
