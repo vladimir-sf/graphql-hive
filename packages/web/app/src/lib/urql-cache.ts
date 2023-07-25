@@ -24,7 +24,6 @@ import {
   TokensDocument,
   type DeleteTokensDocument,
 } from '../../pages/[orgId]/[projectId]/[targetId]/settings';
-import { DeletePersistedOperationDocument } from '../graphql';
 import { CollectionsQuery } from './hooks/use-collections';
 
 const TargetsDocument = graphql(`
@@ -279,16 +278,6 @@ const addAlert: TypedDocumentNodeUpdateResolver<typeof CreateAlertModal_AddAlert
     id: updatedProject.id,
   });
 };
-const deletePersistedOperation: TypedDocumentNodeUpdateResolver<
-  typeof DeletePersistedOperationDocument
-> = ({ deletePersistedOperation }, _args, cache) => {
-  const operation = deletePersistedOperation.deletedPersistedOperation;
-
-  cache.invalidate({
-    __typename: operation.__typename,
-    id: operation.id,
-  });
-};
 
 const deleteDocumentCollection: TypedDocumentNodeUpdateResolver<DeleteCollectionMutationType> = (
   mutation,
@@ -387,7 +376,6 @@ export const Mutation = {
   addAlertChannel,
   deleteAlertChannels,
   addAlert,
-  deletePersistedOperation,
   deleteDocumentCollection,
   deleteOperationInDocumentCollection,
   createOperationInDocumentCollection,
