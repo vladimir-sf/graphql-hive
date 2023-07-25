@@ -14,6 +14,7 @@ import type { CreateTarget_CreateTargetMutation } from '@/components/v2/modals/c
 import type { DeleteCollectionMutationType } from '@/components/v2/modals/delete-collection';
 import type { DeleteOperationMutationType } from '@/components/v2/modals/delete-operation';
 import type { DeleteOrganizationDocument } from '@/components/v2/modals/delete-organization';
+import { DeleteProjectMutation } from '@/components/v2/modals/delete-project';
 import { graphql } from '@/gql';
 import { ResultOf, VariablesOf } from '@graphql-typed-document-node/core';
 import { Cache, QueryInput, UpdateResolver } from '@urql/exchange-graphcache';
@@ -22,11 +23,7 @@ import {
   TokensDocument,
   type DeleteTokensDocument,
 } from '../../pages/[orgId]/[projectId]/[targetId]/settings';
-import {
-  DeletePersistedOperationDocument,
-  DeleteProjectDocument,
-  DeleteTargetDocument,
-} from '../graphql';
+import { DeletePersistedOperationDocument, DeleteTargetDocument } from '../graphql';
 import { CollectionsQuery } from './hooks/use-collections';
 
 const TargetsDocument = graphql(`
@@ -127,7 +124,7 @@ const createProject: TypedDocumentNodeUpdateResolver<typeof CreateProjectMutatio
   });
 };
 
-const deleteProject: TypedDocumentNodeUpdateResolver<typeof DeleteProjectDocument> = (
+const deleteProject: TypedDocumentNodeUpdateResolver<typeof DeleteProjectMutation> = (
   { deleteProject },
   _args,
   cache,
